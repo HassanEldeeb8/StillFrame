@@ -1,0 +1,68 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\eldee\\StillFrame\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\eldee\\StillFrame\\Assets\\Scripts\\TimeManger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\TimeManger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\eldee\\StillFrame\\Assets\\Martial Hero\\License.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Martial Hero\\License.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\eldee\\StillFrame\\Assets\\codeandweb.com\\Readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\codeandweb.com\\Readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "License.txt",
+              "DocumentMoniker": "C:\\Users\\eldee\\StillFrame\\Assets\\Martial Hero\\License.txt",
+              "RelativeDocumentMoniker": "Assets\\Martial Hero\\License.txt",
+              "ToolTip": "C:\\Users\\eldee\\StillFrame\\Assets\\Martial Hero\\License.txt",
+              "RelativeToolTip": "Assets\\Martial Hero\\License.txt",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-04-03T08:59:02.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Readme.txt",
+              "DocumentMoniker": "C:\\Users\\eldee\\StillFrame\\Assets\\codeandweb.com\\Readme.txt",
+              "RelativeDocumentMoniker": "Assets\\codeandweb.com\\Readme.txt",
+              "ToolTip": "C:\\Users\\eldee\\StillFrame\\Assets\\codeandweb.com\\Readme.txt",
+              "RelativeToolTip": "Assets\\codeandweb.com\\Readme.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-04-03T08:45:14.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TimeManger.cs",
+              "DocumentMoniker": "C:\\Users\\eldee\\StillFrame\\Assets\\Scripts\\TimeManger.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\TimeManger.cs",
+              "ToolTip": "C:\\Users\\eldee\\StillFrame\\Assets\\Scripts\\TimeManger.cs",
+              "RelativeToolTip": "Assets\\Scripts\\TimeManger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T08:19:42.699Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
