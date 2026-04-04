@@ -5,16 +5,12 @@
 [Bb]uilds/
 [Ll]ogs/
 UserSettings/
+.vs/
 
 *.csproj
-*.unityproj
 *.sln
 *.user
-*.userprefs
 *.pidb
 *.booproj
 *.svd
 *.pdb
-*.mdb
-*.opendb
-*.VC.db
