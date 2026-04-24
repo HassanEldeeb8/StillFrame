@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010464396976}
-  - component: {fileID: 95000013227593822}
   - component: {fileID: 2083171621872768777}
   - component: {fileID: 1175910752982580687}
   - component: {fileID: 2623794426439008890}
   - component: {fileID: 8249546240817887183}
+  - component: {fileID: 7032047968591183901}
   m_Layer: 8
   m_Name: archer
   m_TagString: Enemy
@@ -37,28 +37,6 @@ Transform:
   - {fileID: 4000012882303986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95000013227593822
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010854855540}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: be208344c9e3e7947b79f2ae7fffb366, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &2083171621872768777
 Rigidbody2D:
   serializedVersion: 5
@@ -74,7 +52,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 1
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -85,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!114 &1175910752982580687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +94,10 @@ MonoBehaviour:
   arrowPrefab: {fileID: 1000012264916826}
   firePoint: {fileID: 3375274008469192316}
   moveSpeed: 2
+  chaseRange: 8
   attackRange: 1
+  stopDistance: 4
+  maxDistanceFromSpawn: 3
   shootCooldown: 3
 --- !u!61 &8249546240817887183
 BoxCollider2D:
@@ -164,6 +145,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7422371, y: 1.4882472}
   m_EdgeRadius: 0
+--- !u!95 &7032047968591183901
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010854855540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fefe120d653cc64eb2c99d3ef0952f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1000011210365404
 GameObject:
   m_ObjectHideFlags: 0
