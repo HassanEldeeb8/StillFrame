@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private float move;
     private bool isGrounded;
+    public Health health;
 
     void Start()
     {
@@ -18,20 +19,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        move = Input.GetAxis("Horizontal");
 
+        if (health != null && health.IsDead)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Stop movement
+            return;
+        }
+        // Movement input
+        move = Input.GetAxisRaw("Horizontal");
+
+        // Animation
         anim.SetFloat("Speed", Mathf.Abs(move));
 
+        // Face direction
         if (move > 0)
             transform.localScale = new Vector3(1, 1, 1);
         else if (move < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
+        // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            anim.SetBool("IsJumping", true);
             isGrounded = false;
+            anim.SetBool("IsJumping", true);
         }
     }
 
@@ -46,6 +57,24 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             anim.SetBool("IsJumping", false);
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            anim.SetBool("IsJumping", false);
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+            anim.SetBool("IsJumping", true);
         }
     }
 }

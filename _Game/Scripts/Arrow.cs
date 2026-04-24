@@ -17,7 +17,7 @@ public class Arrow : MonoBehaviour
     {
         direction = dir.normalized;
 
-        // 🔥 Fix zero direction
+        // ðŸ”¥ Fix zero direction
         if (direction == Vector2.zero)
             direction = Vector2.right;
     }

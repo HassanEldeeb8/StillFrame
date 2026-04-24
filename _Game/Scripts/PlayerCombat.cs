@@ -10,14 +10,17 @@ public class PlayerCombat : MonoBehaviour
 
     private Animator anim;
     private bool isAttacking;
+    private Health health;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        health = GetComponent<Health>(); 
     }
 
     void Update()
     {
+        if (health != null && health.IsDead) return;
         if (Input.GetMouseButtonDown(0) && !isAttacking)
         {
             StartCoroutine(Attack());

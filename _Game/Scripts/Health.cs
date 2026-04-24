@@ -8,16 +8,19 @@ public class Health : MonoBehaviour
 
     public Image healthBarFill;
 
-    private Animator anim;
     private ArcherAI archer;
+    private MeleeEnemy meleeEnemy;
+
+    public bool IsDead => isDead; 
+
     private bool isDead;
 
     void Start()
     {
         currentHealth = maxHealth;
 
-        anim = GetComponentInChildren<Animator>();
         archer = GetComponent<ArcherAI>();
+        meleeEnemy = GetComponent<MeleeEnemy>();
 
         UpdateBar();
     }
@@ -27,23 +30,30 @@ public class Health : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+
+        if (currentHealth < 0)
+            currentHealth = 0;
+
         UpdateBar();
 
         if (currentHealth > 0)
         {
             if (archer != null)
                 archer.Hurt();
-            else if (anim != null)
-                anim.SetTrigger("hurt");
+
+            if (meleeEnemy != null)
+                meleeEnemy.Hurt();
         }
         else
         {
             isDead = true;
+            GetComponent<Animator>().SetBool("isdead", true);
 
             if (archer != null)
                 archer.Die();
-            else if (anim != null)
-                anim.SetBool("IsDead", true);
+
+            if (meleeEnemy != null)
+                meleeEnemy.Die();
         }
     }
 
