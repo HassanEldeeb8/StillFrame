@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour
@@ -15,7 +14,6 @@ public class MeleeEnemy : MonoBehaviour
     public int damage = 15;
 
     public Transform attackPoint;
-    public LayerMask playerLayer;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -125,16 +123,15 @@ public class MeleeEnemy : MonoBehaviour
         {
             if (hit.CompareTag("Player"))
             {
-                PlayerCombat pc = hit.GetComponent<PlayerCombat>();
+                PlayerCombat pc = hit.GetComponentInParent<PlayerCombat>();
 
-                if (pc != null && pc.IsParrying())
+                if (pc != null && pc.TryParry())
                 {
                     Debug.Log("MELEE PARRIED");
                     return;
                 }
 
-                Health hp = hit.GetComponent<Health>();
-
+                Health hp = hit.GetComponentInParent<Health>();
                 if (hp != null)
                     hp.TakeDamage(damage);
 

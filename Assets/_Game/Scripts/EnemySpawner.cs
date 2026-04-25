@@ -2,30 +2,52 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    [Header("Enemy Prefabs")]
+    public GameObject enemy1;
+    public GameObject enemy2;
+    public GameObject enemy3;
+
+    [Header("Spawn Settings")]
+    public float spawnDelay = 3f;
     public Transform spawnPoint;
-    public float respawnTime = 3f;
 
-    private GameObject currentEnemy;
-    private bool isRespawning = false;
-
-    void Start()
-    {
-        SpawnEnemy();
-    }
+    private float timer;
 
     void Update()
     {
-        if (currentEnemy == null && !isRespawning)
+        timer -= Time.deltaTime;
+
+        if (timer <= 0f)
         {
-            isRespawning = true;
-            Invoke(nameof(SpawnEnemy), respawnTime);
+            SpawnEnemy();
+            timer = spawnDelay;
         }
     }
 
     void SpawnEnemy()
     {
-        currentEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-        isRespawning = false;
+        int rand = Random.Range(0, 3);
+
+        GameObject enemyToSpawn = null;
+
+        if (rand == 0)
+            enemyToSpawn = enemy1;
+        else if (rand == 1)
+            enemyToSpawn = enemy2;
+        else
+            enemyToSpawn = enemy3;
+
+        if (enemyToSpawn != null)
+        {
+            Instantiate(
+                enemyToSpawn,
+                spawnPoint.position,
+                Quaternion.identity
+            );
+            Vector3 pos = spawnPoint.position;
+
+            if (enemyToSpawn == enemy3)
+                pos.y += 1.0f;
+        }
     }
 }

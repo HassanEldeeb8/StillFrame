@@ -677,7 +677,7 @@ Transform:
   m_GameObject: {fileID: 1000012663239756}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.22, y: 0.372, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -872,9 +872,6 @@ MonoBehaviour:
   attackDuration: 0.6
   damage: 15
   attackPoint: {fileID: 2834187417493687979}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &1000012730742446
 GameObject:
   m_ObjectHideFlags: 0
