@@ -2,7 +2,7 @@
 
 StillFrame is a 2D action platformer developed using the Unity 6.2.0 engine. The project focuses on the implementation of fluid character movement, responsive combat mechanics, enemy artificial intelligence, and integrated animation systems. This project serves as a practical application of game development principles and C# programming.
 
----
+
 
 ## Project Overview
 
@@ -10,7 +10,6 @@ StillFrame is a combat-oriented platformer where the player must navigate throug
 
 Furthermore, this project functioned as a comprehensive learning exercise in software engineering, specifically regarding debugging procedures, animation state management, and the architectural design of gameplay systems.
 
----
 
 ## Core Features
 
@@ -51,7 +50,6 @@ The arrow system operates through the following logic:
 * Collision logic that applies damage to the player.
 * Memory management through the destruction of objects upon impact or after a specific duration.
 
----
 
 ## Animation Framework
 The project utilizes Unity Animator Controllers to manage the visual states of characters. This involves the use of Finite State Machines (FSM) to transition between different clips:
@@ -61,7 +59,7 @@ The project utilizes Unity Animator Controllers to manage the visual states of c
 
 Transitions were carefully calibrated to reduce latency and improve the tactile feel of the gameplay.
 
----
+
 
 ## Technical Specifications
 * **Engine:** Unity 6.2.0
@@ -69,7 +67,7 @@ Transitions were carefully calibrated to reduce latency and improve the tactile 
 * **Physics Components:** Rigidbody2D, BoxCollider2D, and CircleCollider2D.
 * **Systems:** Unity Mecanim Animator and Prefab workflow.
 
----
+
 
 ## Project Structure
 
@@ -86,7 +84,8 @@ Assets/
 ├── Prefabs/
 ├── Sprites/
 └── Scenes/
-Development Challenges and Solutions
+
+## Development Challenges and Solutions
 Animation Logic Conflicts
 Enemy attack animations occasionally failed to trigger or were interrupted by movement states. This was resolved by refining the transition parameters and using animation layers to prioritize combat actions over basic locomotion.
 
@@ -99,7 +98,7 @@ Ranged enemies initially faced difficulties with projectile accuracy. This requi
 Detection Accuracy
 Inconsistent hit registration was addressed by reviewing Layer Masks and the physics matrix. By adjusting the radius of the overlap circle and verifying object tags, the precision of the damage system was significantly increased.
 
-Future Development
+## Future Development
 The following updates are planned to expand the scope of the project:
 
 Implementation of a Graphical User Interface (GUI) for health bars and menus.
@@ -112,7 +111,7 @@ Expansion of the combat system to include combo sequences.
 
 Persistent data management through a save system.
 
-Execution Instructions
+## Execution Instructions
 Clone the repository using the following command:
 git clone https://github.com/HassanEldeeb8/StillFrame.git
 
@@ -122,5 +121,5 @@ Ensure the project is set to run on Unity version 6.2.0.
 
 Load the primary scene located in the Scenes folder and enter Play Mode.
 
-Developer: Created by Mahmoud Hassan Ayman.
+Developer: Created by Hassan Ayman.
 License: This project is intended for educational and portfolio demonstration purposes.
