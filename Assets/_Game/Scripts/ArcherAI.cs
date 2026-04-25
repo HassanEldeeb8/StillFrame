@@ -101,8 +101,6 @@ public class ArcherAI : MonoBehaviour
         float maxX = spawnPos.x + maxDistanceFromSpawn;
 
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = spawnPos.y;
-        pos.z = spawnPos.z;
 
         transform.position = pos;
     }
@@ -129,13 +127,8 @@ public class ArcherAI : MonoBehaviour
         }
         else
         {
-            pos.x = spawnPos.x;
-
             if (anim) anim.SetFloat("Speed", 0f);
         }
-
-        pos.y = spawnPos.y;
-        pos.z = spawnPos.z;
 
         transform.position = pos;
     }
@@ -148,8 +141,6 @@ public class ArcherAI : MonoBehaviour
         float maxX = spawnPos.x + maxDistanceFromSpawn;
 
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        pos.y = spawnPos.y;
-        pos.z = spawnPos.z;
 
         transform.position = pos;
     }
@@ -166,27 +157,24 @@ public class ArcherAI : MonoBehaviour
         if (anim)
             anim.SetTrigger("Attack");
 
-        Invoke(nameof(SpawnArrow), 0.35f);
-
         lastDir = dir;
+
+        CancelInvoke(nameof(SpawnArrow));
+        Invoke(nameof(SpawnArrow), 0.44f);
     }
     void SpawnArrow()
     {
         if (arrowPrefab == null || firePoint == null)
             return;
 
-        GameObject arrow =
-            Instantiate(
-                arrowPrefab,
-                new Vector3(
-                    firePoint.position.x,
-                    firePoint.position.y - 0.2f,
-                    firePoint.position.z
-                ),
-                Quaternion.identity
-            );
+        Vector3 spawnPos = new Vector3(
+            firePoint.position.x + (lastDir * 0.3f),
+            firePoint.position.y - 0.15f,
+            firePoint.position.z
+        );
 
-        arrow.transform.localScale = arrowPrefab.transform.localScale;
+        GameObject arrow =
+            Instantiate(arrowPrefab, spawnPos, Quaternion.identity);
 
         Arrow a = arrow.GetComponent<Arrow>();
 
@@ -212,7 +200,7 @@ public class ArcherAI : MonoBehaviour
 
         if (col != null)
             col.enabled = false;
-
+        CancelInvoke();
         Destroy(gameObject, 2f);
     }
 }

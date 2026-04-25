@@ -1,67 +1,73 @@
-    using UnityEngine;
+using UnityEngine;
 
-    public class Arrow : MonoBehaviour
-    {
-        public float speed = 1f;
-        public int damage = 10;
-        public float lifeTime = 5f;
+public class Arrow : MonoBehaviour
+{
+    public float speed = 1f;
+    public int damage = 10;
+    public float lifeTime = 5f;
 
-        private Vector2 direction;
+    private Vector2 direction;
 
     public void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
 
-        Vector3 s = transform.localScale;
-
-        s.x = direction.x > 0 ? Mathf.Abs(s.x) : -Mathf.Abs(s.x);
-
-        transform.localScale = s;
+        if (dir.x > 0)
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        else
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
     }
 
     void Start()
+    {
+        Collider2D myCol = GetComponent<Collider2D>();
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject e in enemies)
         {
-            Collider2D myCol = GetComponent<Collider2D>();
+            Collider2D[] enemyCols = e.GetComponentsInChildren<Collider2D>();
 
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (GameObject e in enemies)
+            foreach (Collider2D enemyCol in enemyCols)
             {
-                Collider2D enemyCol = e.GetComponent<Collider2D>();
-
                 if (enemyCol != null && myCol != null)
                     Physics2D.IgnoreCollision(myCol, enemyCol);
             }
-
-            Destroy(gameObject, 5f);
         }
 
-        void Update()
+        Destroy(gameObject, lifeTime);
+    }
+
+    void Update()
+    {
+        transform.position += (Vector3)direction * speed * Time.deltaTime;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+            return;
+
+        PlayerCombat pc = col.GetComponentInParent<PlayerCombat>();
+        Health hp = col.GetComponentInParent<Health>();
+
+        if (pc != null && pc.TryParry())
         {
-            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            Debug.Log("ARROW PARRIED");
+            Destroy(gameObject);
+            return;
         }
 
-        void OnTriggerEnter2D(Collider2D col)
+        if (col.CompareTag("Player"))
         {
-            if (col.CompareTag("Enemy"))
-                return;
-
-            if (col.CompareTag("Player"))
-            {
-                PlayerCombat pc = col.GetComponent<PlayerCombat>();
-                if (pc != null && pc.IsParrying())
-                {
-                    Debug.Log("ARROW PARRIED");
-                    Destroy(gameObject);
-                    return;
-                }
-
-                Health hp = col.GetComponent<Health>();
-
-                if (hp != null)
-                    hp.TakeDamage(damage);
-            }
+            if (hp != null)
+                hp.TakeDamage(damage);
 
             Destroy(gameObject);
+            return;
         }
+
+        if (!col.isTrigger)
+            Destroy(gameObject);
     }
+}

@@ -5,33 +5,61 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 7f;
 
+    public float idleFreezeDelay = 0.25f;
+
     private Rigidbody2D rb;
     private Animator anim;
     private float move;
     private bool isGrounded;
+    private float idleTimer;
+
     public Health health;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        if (anim != null)
+            anim.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     void Update()
     {
-
         if (health != null && health.IsDead)
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Stop movement
+            Time.timeScale = 1f;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
         }
-        // Movement input
+
+        bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+        bool attackPressed = Input.GetMouseButtonDown(0);
+        bool parryPressed = Input.GetMouseButtonDown(1);
+
         move = Input.GetAxisRaw("Horizontal");
 
-        // Animation
+        bool hasInput =
+            move != 0 ||
+            jumpPressed ||
+            attackPressed ||
+            parryPressed;
+
+        if (hasInput)
+        {
+            Time.timeScale = 1f;
+            idleTimer = 0f;
+        }
+        else
+        {
+            idleTimer += Time.unscaledDeltaTime;
+
+            if (idleTimer >= idleFreezeDelay)
+                Time.timeScale = 0f;
+        }
+
         anim.SetFloat("Speed", Mathf.Abs(move));
 
-        // Face direction
         Vector3 s = transform.localScale;
 
         if (move > 0)
@@ -41,11 +69,13 @@ public class PlayerController : MonoBehaviour
 
         transform.localScale = s;
 
-
-        // Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (jumpPressed && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            Time.timeScale = 1f;
+
+            rb.linearVelocity =
+                new Vector2(rb.linearVelocity.x, jumpForce);
+
             isGrounded = false;
             anim.SetBool("IsJumping", true);
         }
@@ -53,7 +83,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
+        rb.linearVelocity =
+            new Vector2(move * speed, rb.linearVelocity.y);
     }
 
     void OnCollisionEnter2D(Collision2D col)

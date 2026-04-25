@@ -9,14 +9,14 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayer;
 
     public float parryDuration = 0.4f;
-    public float parryCooldown = 0.6f;
+    public float parryCooldown = 0.5f;
 
     private Animator anim;
+    private Health health;
+
     private bool isAttacking;
     private bool isParrying;
     private bool canParry = true;
-
-    private Health health;
 
     void Start()
     {
@@ -26,7 +26,8 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (health != null && health.IsDead) return;
+        if (health != null && health.IsDead)
+            return;
 
         if (Input.GetMouseButtonDown(0) && !isAttacking)
             StartCoroutine(Attack());
@@ -57,7 +58,8 @@ public class PlayerCombat : MonoBehaviour
                 hp.TakeDamage(attackDamage);
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.25f);
+
         isAttacking = false;
     }
 
@@ -75,6 +77,15 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(parryCooldown);
 
         canParry = true;
+    }
+
+    public bool TryParry()
+    {
+        if (!isParrying)
+            return false;
+
+        Debug.Log("PARRY");
+        return true;
     }
 
     public bool IsParrying()
